@@ -1,20 +1,15 @@
 #pragma once
 #include "Broadcast/Broadcast.h"
 #include "Broadcast/Subscribers/IDrawSub.h"
-#include "GameEngine.h"
+
+class GameEngine;
 
 class DrawBroadcast : public Broadcast<IDrawSub>
 {
 public:
-    DrawBroadcast(GameEngine *ge)
-        : engine(ge)
-    {
-    }
+    DrawBroadcast(GameEngine *ge);
 
-    void CallOne(IDrawSub *sub) override
-    {
-        engine->Draw(sub);
-    }
+    void CallOne(IDrawSub *sub) override;
 
 private:
     GameEngine *engine;

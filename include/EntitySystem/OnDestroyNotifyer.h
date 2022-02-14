@@ -4,15 +4,15 @@
 class IOnDestroyNotifyer
 {
 public:
-    virtual Delegate<void()> &GetOnDestroyDelegate() = 0;
+    virtual utils::Delegate<void()> &GetOnDestroyDelegate() = 0;
 };
 
 class OnDestroyNotyfier : virtual public IOnDestroyNotifyer
 {
 public:
-    Delegate<void()> &GetOnDestroyDelegate() override { return onDestroy; }
+    utils::Delegate<void()> &GetOnDestroyDelegate() override { return onDestroy; }
     virtual ~OnDestroyNotyfier() { onDestroy(); }
 
 private:
-    Delegate<void()> onDestroy;
+    utils::Delegate<void()> onDestroy;
 };

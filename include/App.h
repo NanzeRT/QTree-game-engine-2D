@@ -7,8 +7,6 @@
 #include "GameEngine.h"
 #include "Base/IDrawable.h"
 
-class GDrawable;
-
 class App
 {
 public:

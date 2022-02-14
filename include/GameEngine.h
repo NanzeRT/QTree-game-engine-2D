@@ -2,14 +2,14 @@
 #include <vector>
 #include "EntitySystem/Entity.h"
 #include "Base/IDrawable.h"
-#include "Broadcast/BroadcastHandler.h"
+//#include "Broadcast/BroadcastHandler.h"
 class App;
 
 class GameEngine
 {
 public:
     std::vector<Entity> scene;
-    GameBroadcastsHandler const broadcasts;
+    //GameBroadcastsHandler const broadcasts;
 
     GameEngine(App *);
     void Update();

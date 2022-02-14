@@ -9,7 +9,7 @@ add_executable(QTreeR src/main.cpp
     src/App.cpp
     src/GameEngine.cpp
     src/Drawables/Square.cpp
-    src/Broadcast/Broadcast.cpp
+    src/Broadcast/DrawBroadcast.cpp
     src/EntitySystem/Entity.cpp
 )
 

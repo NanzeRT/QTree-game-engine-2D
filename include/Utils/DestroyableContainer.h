@@ -2,43 +2,46 @@
 #include "Utils/Delegate.h"
 #include "EntitySystem/OnDestroyNotifyer.h"
 
-template <class T = OnDestroyNotyfier>
-struct DestroyableContainer
+namespace utils
 {
-    DestroyableContainer(T &obj_) : DestroyableContainer(*obj_)
+    template <class T = OnDestroyNotyfier>
+    struct DestroyableContainer
     {
-    }
-
-    DestroyableContainer(T *obj_)
-        : obj(obj_)
-    {
-        on_destroy_handle = obj->GetOnDestroyDelegate() += [=, this]()
+        DestroyableContainer(T &obj_) : DestroyableContainer(*obj_)
         {
-            this->is_alive = false;
-        };
-    }
+        }
 
-    DestroyableContainer(const DestroyableContainer &a) : DestroyableContainer(a.obj)
-    {
-    }
+        DestroyableContainer(T *obj_)
+            : obj(obj_)
+        {
+            on_destroy_handle = obj->GetOnDestroyDelegate() += [this]()
+            {
+                this->is_alive = false;
+            };
+        }
 
-    T *Get()
-    {
-        if (is_alive)
-            return obj;
-        return nullptr;
-    }
+        DestroyableContainer(const DestroyableContainer &a) : DestroyableContainer(a.obj)
+        {
+        }
 
-    bool IsAlive() { return is_alive; }
-    ~DestroyableContainer()
-    {
-        if (is_alive)
-            obj->GetOnDestroyDelegate() -= on_destroy_handle;
-    }
+        T *Get()
+        {
+            if (is_alive)
+                return obj;
+            return nullptr;
+        }
 
-private:
-    T *obj;
-    bool is_alive = true;
+        bool IsAlive() { return is_alive; }
+        ~DestroyableContainer()
+        {
+            if (is_alive)
+                obj->GetOnDestroyDelegate() -= on_destroy_handle;
+        }
 
-    Delegate<void()>::handle on_destroy_handle;
-};
+    private:
+        T *obj;
+        bool is_alive = true;
+
+        Delegate<void()>::handle on_destroy_handle;
+    };
+}

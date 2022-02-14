@@ -1,8 +1,9 @@
 #include "GameEngine.h"
 #include "App.h"
+#include "Entities/MouseSquare.h"
 
 GameEngine::GameEngine(App *app_)
-    : app(app_), broadcasts(this)
+    : app(app_)//, broadcasts(this)
 {
 
 }
@@ -12,7 +13,6 @@ void GameEngine::Update()
 
 }
 
-#include "Entities/MouseSquare.h"
 
 MouseSquare ms;
 
