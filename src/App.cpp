@@ -62,7 +62,7 @@ void App::StartLoop()
     {
         auto start = std::chrono::steady_clock::now();
         Loop();
-        std::this_thread::sleep_for(std::chrono::microseconds(1000000 / settings.FPS) - (start - std::chrono::steady_clock::now()));
+        std::this_thread::sleep_for(std::chrono::microseconds(1000000 / settings.FPS) + (start - std::chrono::steady_clock::now()));
     }
 }
 

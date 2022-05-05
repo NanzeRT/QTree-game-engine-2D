@@ -11,6 +11,8 @@ add_executable(QTreeR src/main.cpp
     src/Drawables/Square.cpp
     src/Broadcast/DrawBroadcast.cpp
     src/EntitySystem/Entity.cpp
+    src/EntitySystem/EntityContainers.cpp
+    src/EntitySystem/ComponentStarter.cpp
 )
 
 target_link_libraries(QTreeR X11)

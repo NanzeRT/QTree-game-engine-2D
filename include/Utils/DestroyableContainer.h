@@ -18,6 +18,8 @@ namespace utils
             {
                 this->is_alive = false;
             };
+            if (obj->onDestroy.listeners.size() == 0)
+                throw std::exception();
         }
 
         DestroyableContainer(const DestroyableContainer &a) : DestroyableContainer(a.obj)

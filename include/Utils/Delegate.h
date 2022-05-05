@@ -39,7 +39,7 @@ namespace utils
                 Ts &&...args)
             {
                 R ret;
-                for (auto listener : listeners)
+                for (auto &listener : listeners)
                 {
                     ret = listener(std::forward<Ts>(args)...);
                 }
@@ -55,7 +55,7 @@ namespace utils
                 std::vector<std::function<void(Args...)>> const &listeners,
                 Ts &&...args)
             {
-                for (auto listener : listeners)
+                for (auto &listener : listeners)
                 {
                     listener(std::forward<Ts>(args)...);
                 }
@@ -129,7 +129,13 @@ namespace utils
             return detail::call_helper<R, Args...>::call(listeners, std::forward<Ts>(args)...);
         }
 
-    private:
+        void Clear()
+        {
+            listeners.clear();
+            handle_lookup.clear();
+        }
+
+    // private:
         std::vector<std::function<R(Args...)>> listeners;
         std::vector<std::size_t> handle_lookup;
         std::size_t upper_id = 0;

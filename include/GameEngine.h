@@ -1,15 +1,16 @@
 #pragma once
 #include <vector>
-#include "EntitySystem/Entity.h"
+#include "EntitySystem/Component.h"
+#include "EntitySystem/ComponentStarter.h"
+#include "EntitySystem/EntityContainers.h"
 #include "Base/IDrawable.h"
-//#include "Broadcast/BroadcastHandler.h"
+#include "Broadcast/BroadcastHandler.h"
 class App;
 
 class GameEngine
 {
 public:
-    std::vector<Entity> scene;
-    //GameBroadcastsHandler const broadcasts;
+    EntityContainer scene;
 
     GameEngine(App *);
     void Update();
@@ -19,7 +20,13 @@ public:
     void OnMouseUp(int x, int y);
     //void KeyboardEvent();
 
+    void AddComponent(Component *);
     void Draw(IDrawable *drawable);
 private:
+    GameBroadcastsHandler broadcasts;
+    ComponentStarter component_starter;
     App *app;
 };
+
+#include "EntitySystem/Entity.h"
+#include "EntitySystem/Component.h"
