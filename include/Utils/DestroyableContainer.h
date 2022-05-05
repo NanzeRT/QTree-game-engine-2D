@@ -14,19 +14,22 @@ namespace utils
         DestroyableContainer(T *obj_)
             : obj(obj_)
         {
+            if (obj == nullptr)
+            {
+                is_alive = false;
+                return;
+            }
             on_destroy_handle = obj->GetOnDestroyDelegate() += [this]()
             {
                 this->is_alive = false;
             };
-            if (obj->onDestroy.listeners.size() == 0)
-                throw std::exception();
         }
 
-        DestroyableContainer(const DestroyableContainer &a) : DestroyableContainer(a.obj)
+        DestroyableContainer(const DestroyableContainer &a) : DestroyableContainer(a.Get())
         {
         }
 
-        T *Get()
+        T *Get() const
         {
             if (is_alive)
                 return obj;
